@@ -1,4 +1,3 @@
-
 @media screen and (max-width: 1200px) {
   #desktop-nav {
     display: none;
@@ -43,6 +42,9 @@
 }
 
 @media screen and (max-width: 480px) {
+  body {
+    overflow-x: clip;
+  }
   .container {
     width: 100%;
     z-index: 200;
@@ -129,15 +131,15 @@
     -webkit-mask: linear-gradient(
       90deg,
       transparent,
-      white 15%,
-      white 85%,
+      white 5%,
+      white 95%,
       transparent
     );
     mask: linear-gradient(
       90deg,
       transparent,
-      white 15%,
-      white 85%,
+      white 5%,
+      white 95%,
       transparent
     );
   }
@@ -206,6 +208,13 @@
     gap: 2rem;
     list-style: none;
     font-size: var(--meduim-font);
+  }
+
+  footer .nav-links-conatainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
   }
 
   .section_text .intro {

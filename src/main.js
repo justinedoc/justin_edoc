@@ -92,7 +92,7 @@ document.querySelector(".read_more").addEventListener("click", () => {
   }
 });
 
-// SCROLL ANIMATION
+///// SCROLL ANIMATION /////
 
 const sliderBtns = document.querySelectorAll(".slider_btn");
 const [left, right] = sliderBtns;
@@ -113,6 +113,9 @@ const addAnimation = function () {
   });
 };
 
+////// END OF SCROLL ANIMATION /////
+
+//// SCROLL CONTROLS ////
 const nextPrev = (btn, dir) => {
   btn.addEventListener("click", () => {
     scrollers.forEach((scroller) => {
@@ -140,9 +143,9 @@ const pause = (btn) => {
 };
 pause(playBtn);
 
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  addAnimation();
-}
+//// END OF SCROLL CONTROLS ////
+
+//// DARKMODE FUNCTIONALITY ////
 
 const container = document.querySelector(".container");
 const duplicatedContainer = container.cloneNode(true);
@@ -168,3 +171,55 @@ toggleBtn.forEach((toggle) => {
     container.classList.toggle("active");
   });
 });
+
+///// DM FUNCTIONALITY ENDS ////
+
+///// ANIMATIONS ////
+
+const canAnimate = function () {
+  myReveal({
+    origin: "top",
+    distance: "30px",
+    duration: 1000,
+    delay: 200,
+    reset: true,
+  });
+
+  myReveal().reveal(
+    ".text-container, #contact .btn, #home .section_pic_container",
+    { origin: "top" }
+  );
+
+  myReveal().reveal(
+    ".section_text_p1, #about .section_pic_container,#experience .experience-sub-title, .head h2, .section_text_p, #home .btn-container",
+    { origin: "left" }
+  );
+
+  myReveal().reveal(
+    ".title, .btn-wrapper, .head p, .contact-info-container li, .name_1, .intro",
+    { origin: "right" }
+  );
+
+  myReveal().reveal(
+    "#about .details-containers, .text_1 , .article-container article, .input-section, label, #contact i,  .change-text,  footer ul li",
+    {
+      origin: "bottom",
+    }
+  );
+
+  anime({
+    targets: ".social-icons i",
+    translateX: [100, 0],
+    duration: 1000,
+    opacity: [0, 1],
+    delay: anime.stagger(300, { easing: "easeOutQuad" }, { from: "last" }),
+  });
+};
+
+//// ANIMATIONS ENDS ////
+
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  canAnimate();
+  addAnimation();
+}

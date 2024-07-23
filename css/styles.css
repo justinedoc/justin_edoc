@@ -63,10 +63,10 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 15vh;
-  /* position: sticky;
+  position: sticky;
   top: 0;
   left: 0;
-  z-index: 999; */
+  z-index: 999;
   background: var(--primary-color);
 }
 
@@ -348,7 +348,7 @@ button.btn:last-child:hover::before {
 
 .social-icons {
   display: flex;
-  gap: 25px;
+  gap: 20px;
 }
 
 .social-icons i {
@@ -438,7 +438,28 @@ button.btn:last-child:hover::before {
   border: var(--secon-color) 0.1rem solid;
   text-align: center;
   min-width: 350px;
+
+  animation: animateDetailsContainers 2s linear forwards;
+  animation-timeline: view();
+  animation-range-end: 350px;
 }
+
+/* #about .section_pic_container {
+  animation: animateAboutImg 2s linear forwards;
+  animation-timeline: view();
+  animation-range-end: 400px;
+}
+
+@keyframes animateAboutImg {
+  from {
+    transform: translateX(-120px);
+    scale: 0.5;
+  }
+  to {
+    transform: translateX(0);
+    scale: 1;
+  }
+} */
 
 .section-container {
   gap: 4rem;
@@ -459,8 +480,6 @@ button.btn:last-child:hover::before {
 
 .text {
   display: none;
-  visibility: hidden;
-  opacity: 0;
   transition: var(--main-trans);
 }
 
@@ -472,7 +491,7 @@ button.btn:last-child:hover::before {
 .text-container .active {
   display: block;
   transition: var(--main-trans);
-  animation: vanish 1.5s linear forwards;
+  /* animation: vanish 1.5s linear forwards; */
 }
 
 button.normal {
@@ -480,12 +499,12 @@ button.normal {
   z-index: 10;
 }
 
-@keyframes vanish {
+/* @keyframes vanish {
   to {
     opacity: 1;
     visibility: visible;
   }
-}
+} */
 
 /* EXPERINIECE SECTION  */
 
@@ -535,9 +554,9 @@ article .icon {
 }
 
 .project-img {
-  border-radius: 2rem;
-  width: 90%;
-  height: 90%;
+  border-radius: .3rem;
+  width: 100%;
+  height: 100%;
 }
 
 .project-title {
@@ -790,7 +809,7 @@ label {
 
 .name-section .input i {
   left: 80%;
-  top: 22%;
+  top: 27%;
 }
 
 .message-section {
@@ -861,7 +880,6 @@ footer .nav-links-conatainer {
   color: var(--sec-text-color);
 }
 
-
 /* DARKMODE STYLES  */
 
 #dark-container {
@@ -931,14 +949,14 @@ footer .nav-links-conatainer {
 .container,
 #dark-container {
   clip-path: circle(0% at 0 0);
-  transition-delay: .1s;
+  transition-delay: 0.1s;
 }
 
 .active.container,
 .active#dark-container {
   z-index: 999;
   clip-path: circle(150% at 0 0);
-  transition: 2.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: 3s ease-out;
   transition-delay: 0s;
 }
 
