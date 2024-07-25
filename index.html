@@ -10,6 +10,12 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link
+      href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.min.css
+    "
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container active" id="light-mode">
@@ -306,8 +312,13 @@
                     My portfolio
                   </h2>
                   <div class="btn-container project-btn">
-                    <button class="btn">Github</button>
-                    <button class="btn">Live Demo</button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://github.com/justinedoc/justin_edoc.git'"
+                    >
+                      Github
+                    </button>
+                    <button class="btn" disabled>Live Demo</button>
                   </div>
                 </div>
 
@@ -321,8 +332,18 @@
                   </div>
                   <h2 class="experience-sub-title project-title">E-commerce</h2>
                   <div class="btn-container project-btn">
-                    <button class="btn">Github</button>
-                    <button class="btn">Live Demo</button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://github.com/justinedoc/E-commerce.git'"
+                    >
+                      Github
+                    </button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://fashion-beta-beige.vercel.app/'"
+                    >
+                      Live Demo
+                    </button>
                   </div>
                 </div>
                 <div class="details-containers color-container slide">
@@ -335,8 +356,18 @@
                   </div>
                   <h2 class="experience-sub-title project-title">Dice Game</h2>
                   <div class="btn-container project-btn">
-                    <button class="btn">Github</button>
-                    <button class="btn">Live Demo</button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://github.com/justinedoc/dicegame.git'"
+                    >
+                      Github
+                    </button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://dicegame-beta-smoky.vercel.app/'"
+                    >
+                      Live Demo
+                    </button>
                   </div>
                 </div>
 
@@ -352,7 +383,12 @@
                     Weather App
                   </h2>
                   <div class="btn-container project-btn">
-                    <button class="btn">Github</button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://github.com/justinedoc/Weather-App.git'"
+                    >
+                      Github
+                    </button>
                     <button class="btn" disabled>Live Demo</button>
                   </div>
                 </div>
@@ -368,8 +404,18 @@
                     Image Searcher
                   </h2>
                   <div class="btn-container project-btn">
-                    <button class="btn">Github</button>
-                    <button class="btn">Live Demo</button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://github.com/justinedoc/Image-Search-Engine.git'"
+                    >
+                      Github
+                    </button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href=`https://image-search-engine-three.vercel.app/`"
+                    >
+                      Live Demo
+                    </button>
                   </div>
                 </div>
                 <div class="details-containers color-container slide">
@@ -384,8 +430,18 @@
                     File Downloader
                   </h2>
                   <div class="btn-container project-btn">
-                    <button class="btn">Github</button>
-                    <button class="btn">Live Demo</button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://github.com/justinedoc/File-Downloader.git'"
+                    >
+                      Github
+                    </button>
+                    <button
+                      class="btn"
+                      onclick="window.location.href='https://file-downloader-dun.vercel.app/'"
+                    >
+                      Live Demo
+                    </button>
                   </div>
                 </div>
               </div>
@@ -425,14 +481,19 @@
               <div class="name-section">
                 <div class="input-box input">
                   <div class="input-section">
-                    <input type="text" name="firstName" required />
+                    <input
+                      type="text"
+                      name="firstName"
+                      id="firstName"
+                      required
+                    />
                     <label for="firstName">First name</label>
                   </div>
                   <i class="bx bxs-id-card contact-icon"></i>
                 </div>
                 <div class="input-box input">
                   <div class="input-section">
-                    <input type="text" name="lastName" required />
+                    <input type="text" name="lastName" id="lastName" required />
                     <label for="lastName">Last name</label>
                   </div>
                   <i class="bx bxs-id-card contact-icon"></i>
@@ -440,24 +501,21 @@
               </div>
               <div class="email-section input">
                 <div class="input-section">
-                  <input type="text" name="email" required />
+                  <input type="text" name="email" id="senderEmail" required />
                   <label for="email">Email</label>
                 </div>
                 <i class="bx bxs-envelope contact-icon"></i>
               </div>
               <div class="message-section input">
                 <div class="input-section">
-                  <textarea name="message"></textarea>
+                  <textarea name="message" id="message"></textarea>
                   <label for="message">Message</label>
                 </div>
                 <i class="bx bx-message-alt-edit contact-icon"></i>
               </div>
             </form>
             <div class="btn-container">
-              <button class="btn">
-                <i class="bx bx-link"></i> Add attachment
-              </button>
-              <button class="btn">
+              <button class="btn" id="sendBtn">
                 <i class="bx bxs-send" style="color: black"></i> send message
               </button>
             </div>
@@ -506,5 +564,13 @@
     <script src="src/scroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="./src/main.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js
+    "></script>
+    <script type="module" src="./src/email.js"></script>
   </body>
 </html>

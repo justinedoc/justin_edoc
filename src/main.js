@@ -218,7 +218,6 @@ const canAnimate = function () {
 
 //// ANIMATIONS ENDS ////
 
-
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   canAnimate();
   addAnimation();

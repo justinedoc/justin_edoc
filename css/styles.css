@@ -29,8 +29,13 @@ body {
   background: var(--primary-color);
 }
 
+.swal2-confirm {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: rgba(0,0,5,0.4);
 }
 
 h1 {
@@ -62,11 +67,11 @@ nav {
   padding: 0 100px;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
+  height: 13vh;
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 100;
   background: var(--primary-color);
 }
 
@@ -851,7 +856,7 @@ textarea {
 
 .form-container .btn-container {
   margin: 10px 0;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .form-container .btn-container .btn {
