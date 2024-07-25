@@ -205,7 +205,7 @@ const darkMode = () => {
         container.id = `dark-container`;
         isDark = true;
         break;
-    }
+    } 
 
     icons.forEach((icon) => {
       isDark
