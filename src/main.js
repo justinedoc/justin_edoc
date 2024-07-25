@@ -113,6 +113,7 @@ const addAnimation = function () {
   });
 };
 
+addAnimation();
 ////// END OF SCROLL ANIMATION /////
 
 //// SCROLL CONTROLS ////
@@ -148,29 +149,73 @@ pause(playBtn);
 //// DARKMODE FUNCTIONALITY ////
 
 const container = document.querySelector(".container");
-const duplicatedContainer = container.cloneNode(true);
-duplicatedContainer.id = "dark-container";
-document.body.appendChild(duplicatedContainer);
-duplicatedContainer.classList.remove("active");
-
+const modeToggleBtn = document.querySelectorAll(".toggle_icon");
 const icons = document.querySelectorAll(".toggle_icon i");
-const toggleBtn = document.querySelectorAll(".toggle_icon");
-const darkContainer = document.querySelector("#dark-container");
 
-toggleBtn.forEach((toggle) => {
-  toggle.addEventListener("click", () => {
-    toggle.classList.add("disabled");
-    setTimeout(() => {
-      toggle.classList.remove("disabled");
-    }, 1500);
+const isInDarkMode = (isDark) => {
+  if (isDark) {
+    container.id = `dark-container`;
+  } else {
+    container.id = `light-mode`;
+  }
+};
+
+const darkMode = () => {
+  let isDark =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  isInDarkMode(isDark);
+
+  const activateDarkMode = () => {
     icons.forEach((icon) => {
-      icon.classList.toggle("bx-sun");
+      isDark
+        ? icon.classList.add("bx-sun")
+        : icon.classList.replace("bx-sun", "bx-moon");
     });
 
-    darkContainer.classList.toggle("active");
-    container.classList.toggle("active");
+    const darkModeActivated = container.id === `dark-container`;
+    localStorage.setItem("theme", darkModeActivated ? "dark" : "light");
+    console.log("darkmode toggled: ", darkModeActivated ? "on" : "off");
+  };
+
+  const currentTheme = window.matchMedia("(prefers-color-scheme: dark)");
+  currentTheme.addEventListener("change", () => {
+    isDark = isDark ? false : true;
+    isInDarkMode(isDark);
+    activateDarkMode();
   });
-});
+
+  modeToggleBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      isDark = isDark ? false : true;
+      isInDarkMode(isDark);
+      activateDarkMode();
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    switch (savedTheme) {
+      case "light":
+        container.id = `light-mode`;
+        isDark = false;
+        break;
+      case "dark":
+        container.id = `dark-container`;
+        isDark = true;
+        break;
+    }
+
+    icons.forEach((icon) => {
+      isDark
+        ? icon.classList.add("bx-sun")
+        : icon.classList.replace("bx-sun", "bx-moon");
+    });
+  });
+};
+
+darkMode();
 
 ///// DM FUNCTIONALITY ENDS ////
 
@@ -220,5 +265,4 @@ const canAnimate = function () {
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   canAnimate();
-  addAnimation();
 }

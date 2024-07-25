@@ -25,6 +25,7 @@
 }
 
 body {
+  height: 100%;
   font-family: "Poppins", sans-serif;
   background: var(--primary-color);
 }
@@ -35,7 +36,7 @@ body {
 
 html {
   scroll-behavior: smooth;
-  -webkit-tap-highlight-color: rgba(0,0,5,0.4);
+  -webkit-tap-highlight-color: rgba(0, 0, 5, 0.4);
 }
 
 h1 {
@@ -47,6 +48,7 @@ h1 {
   background: var(--primary-color);
   color: var(--text-color);
   z-index: 200;
+  transition: 1s ease;
 }
 
 /* Transitions */
@@ -338,7 +340,7 @@ button.btn:first-child:hover i {
   color: var(--darkmode-bg);
 }
 
-#dark-container button.btn {
+#dark-container #home button.btn {
   color: var(--darkmode-text-color);
 }
 
@@ -554,12 +556,12 @@ article .icon {
 
 #projects {
   position: relative;
-  height: max-content;
-  /* max-height: 95vh; */
+  height: 115vh;
+  min-height: auto;
 }
 
 .project-img {
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   width: 100%;
   height: 100%;
 }
@@ -682,7 +684,7 @@ article .icon {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 120vh;
+  height: 90vh;
   position: relative;
 }
 
@@ -744,6 +746,7 @@ article .icon {
   background: var(--primary-color);
   border-radius: 2rem;
   padding: 30px 25px;
+  height: auto;
 }
 
 .form-container h2 {
@@ -844,7 +847,7 @@ textarea {
   width: 100%;
   padding: 25px 15px;
   max-width: 34.5vw;
-  height: 21vh;
+  min-height: 21vh;
   max-height: 22vh;
   border-radius: 1rem;
   border: 1px transparent;
@@ -870,6 +873,11 @@ footer {
   margin: 0 1rem;
 }
 
+footer nav {
+  position: unset;
+  background: unset;
+}
+
 footer p {
   text-align: center;
 }
@@ -887,13 +895,14 @@ footer .nav-links-conatainer {
 
 /* DARKMODE STYLES  */
 
-#dark-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+#dark-container,
+#dark-container .menu-links.open {
   background: var(--darkmode-bg);
   color: var(--darkmode-text-color);
+}
+
+#dark-container .mobile-icon span {
+  background: var(--darkmode-text-color);
 }
 
 #dark-container nav,
@@ -914,6 +923,10 @@ footer .nav-links-conatainer {
 #dark-container .form-container textarea {
   background: #2f2f2f99;
   color: #fff;
+}
+
+#dark-container .section_pic_container {
+  background: #67666657;
 }
 
 #dark-container .form-container label {
@@ -937,13 +950,14 @@ footer .nav-links-conatainer {
 }
 
 #dark-container #projects button.btn:first-child,
-#dark-container #contact button.btn:first-child {
-  color: var(--primary-color);
+#dark-container #contact button.btn:first-child:hover,
+#dark-container .normal:hover {
+  color: var(--primary-color) !important;
 }
 
 #dark-container #home button.btn:first-child:hover,
 #dark-container #projects button.btn:first-child:hover,
-#dark-container #contact button.btn:first-child:hover {
+#dark-container #contact button.btn:first-child {
   color: var(--darkmode-bg);
 }
 
@@ -951,20 +965,11 @@ footer .nav-links-conatainer {
   color: var(--secon-color) !important;
 }
 
-.container,
-#dark-container {
-  clip-path: circle(0% at 0 0);
-  transition-delay: 0.1s;
-}
-
-.active.container,
-.active#dark-container {
-  z-index: 999;
-  clip-path: circle(150% at 0 0);
-  transition: 3s ease-out;
-  transition-delay: 0s;
-}
-
 .toggle_icon.disabled {
   pointer-events: none;
+}
+
+.nav-wrapper {
+  display: flex;
+  gap: 20px;
 }

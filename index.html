@@ -29,9 +29,9 @@
             <li><a href="#projects" class="links">Projects</a></li>
             <li><a href="#contact" class="links">Contact</a></li>
 
-            <!-- <div class="btn-container">
-            <button class="btn normal">Hire Me</button>
-          </div> -->
+            <div class="btn-container">
+              <button class="btn normal" onclick="window.location.href='#contact'">Hire Me</button>
+            </div>
             <span class="toggle_icon"><i class="bx bx-moon moon"></i></span>
           </ul>
         </div>
@@ -41,11 +41,15 @@
         <div class="logo">Justin<span style="color: #12f7ff">.</span></div>
 
         <div class="mobile-menu">
-          <div class="mobile-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+          <div class="nav-wrapper">
+            <span class="toggle_icon"><i class="bx bx-moon moon"></i></span>
+            <div class="mobile-icon" onclick="toggleMenu()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
+
           <div class="menu-links">
             <li><a href="#home" onclick="toggleMenu()">Home</a></li>
             <li><a href="#about" onclick="toggleMenu()">About</a></li>
@@ -507,7 +511,7 @@
                 <i class="bx bxs-envelope contact-icon"></i>
               </div>
               <div class="message-section input">
-                <div class="input-section">
+                <div class="input-section text__area">
                   <textarea name="message" id="message"></textarea>
                   <label for="message">Message</label>
                 </div>

@@ -145,7 +145,7 @@
   }
 
   #projects {
-    height: 90vh;
+    height: auto;
     margin-bottom: 20px;
   }
 
@@ -153,7 +153,7 @@
     justify-content: unset;
     align-items: center;
     flex-direction: column;
-    height: 120vh;
+    height: auto;
   }
 
   .contact-section {
@@ -198,9 +198,13 @@
     gap: 0.1rem;
     margin: 0.3rem;
   }
-
+  footer {
+    height: auto;
+    padding: 5px;
+  }
   footer nav {
-    height: 50vh;
+    height: 60vh;
+    padding: 20px;
   }
 
   .nav-links {
