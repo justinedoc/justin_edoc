@@ -14,12 +14,14 @@ const sendEmail = () => {
       watchVariable: senderEmail.value,
     },
   });
+
   const sender = {
     to_name: "Justin",
     from_name: `${firstName.value} ${lastName.value}`,
     message: emailMessage.value,
     sender_email: senderEmail.value,
   };
+
   emailjs
     .send("service_t9g4ca2", "template_usb6k2q", sender)
     .then((response) => {
@@ -45,7 +47,12 @@ const sendEmail = () => {
 };
 
 const validation = () => {
-  if (firstName.value && lastName.value && senderEmail.value && emailMessage.value) {
+  if (
+    firstName.value &&
+    lastName.value &&
+    senderEmail.value &&
+    emailMessage.value
+  ) {
     console.log("valid");
     sendEmail();
   } else {
@@ -57,6 +64,6 @@ const validation = () => {
       timer: 3000,
     });
   }
-}
+};
 
 sendBtn.addEventListener("click", validation);

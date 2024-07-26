@@ -166,6 +166,7 @@ pause(playBtn);
 const container = document.querySelector(".container");
 const modeToggleBtn = document.querySelectorAll(".toggle_icon");
 const icons = document.querySelectorAll(".toggle_icon i");
+const currentTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
 // FUCNCTION TO ACTIVATE DARKMODE
 
@@ -190,15 +191,12 @@ const activateDarkMode = (boo) => {
 };
 
 const darkMode = () => {
-  // CHECKING CURRENT DEVICE THEME
+  // ASSIGNING CURRENT PAGE THEME
 
-  let isDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  let isDark = false;
 
   // WATCHING THE DEVICE'S THEME FOR CHANGE
 
-  const currentTheme = window.matchMedia("(prefers-color-scheme: dark)");
   currentTheme.addEventListener("change", () => {
     isDark = isDark ? false : true;
     activateDarkMode(isDark);
@@ -212,12 +210,6 @@ const darkMode = () => {
       activateDarkMode(isDark);
     });
   });
-
-  if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    modeToggleBtn.forEach((btn) => {
-      btn.click();
-    });
-  }
 
   // LOADING SAVED THEME ON PAGELOAD
 

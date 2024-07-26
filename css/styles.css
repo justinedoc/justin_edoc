@@ -86,6 +86,11 @@ nav {
   display: none;
 }
 
+.fav__icon {
+  width: auto;
+  height: auto;
+}
+
 li {
   padding: 0px 10px;
   position: relative;
