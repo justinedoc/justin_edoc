@@ -48,7 +48,6 @@ h1 {
   background: var(--primary-color);
   color: var(--text-color);
   z-index: 200;
-  transition: 1s ease;
 }
 
 /* Transitions */
@@ -963,10 +962,6 @@ footer .nav-links-conatainer {
 
 #dark-container #contact button.btn:last-child:hover i {
   color: var(--secon-color) !important;
-}
-
-.toggle_icon.disabled {
-  pointer-events: none;
 }
 
 .nav-wrapper {
