@@ -167,7 +167,6 @@ const container = document.querySelector(".container");
 const modeToggleBtn = document.querySelectorAll(".toggle_icon");
 const icons = document.querySelectorAll(".toggle_icon i");
 
-
 // FUCNCTION TO ACTIVATE DARKMODE
 
 const activateDarkMode = (boo) => {
@@ -191,7 +190,6 @@ const activateDarkMode = (boo) => {
 };
 
 const darkMode = () => {
-
   // CHECKING CURRENT DEVICE THEME
 
   let isDark =
@@ -214,6 +212,12 @@ const darkMode = () => {
       activateDarkMode(isDark);
     });
   });
+
+  if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    modeToggleBtn.forEach((btn) => {
+      btn.click();
+    });
+  }
 
   // LOADING SAVED THEME ON PAGELOAD
 
@@ -239,7 +243,7 @@ const darkMode = () => {
   });
 };
 
-darkMode(); // INITIALIZING DARKMODE FUNCTIONALITY
+darkMode();
 
 ///// DARKMODE FUNCTIONALITY IMPLEMENTATION ENDS ////
 
