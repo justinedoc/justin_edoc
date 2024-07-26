@@ -1,5 +1,6 @@
 "use strict";
 
+//// NAVBAR TOGGLE ////
 const toggleMenu = () => {
   const menu = document.querySelector(".menu-links");
   const icon = document.querySelector(".mobile-icon");
@@ -7,7 +8,9 @@ const toggleMenu = () => {
   icon.classList.toggle("open");
 };
 
-// text animation
+//// NAVBAR TOGGLE ENDS ////
+
+//// TEXT ANIMATION ////
 
 let TxtRotate = function (el, toRotate, period) {
   this.toRotate = toRotate;
@@ -63,6 +66,10 @@ window.onload = function () {
   }
 };
 
+//// TEXT ANIMATION ENDS ////
+
+//// SECTION SCROLL-NAV ANIMATION ////
+
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".links");
 
@@ -85,6 +92,10 @@ window.onscroll = () => {
   });
 };
 
+//// SECTION SCROLL-NAV ANIMATION ENDS ////
+
+//// REVEALING HIDDEN TEXT ////
+
 document.querySelector(".read_more").addEventListener("click", () => {
   const aboutText = document.querySelectorAll(".text");
   for (let i = 0; i < aboutText.length; i++) {
@@ -92,7 +103,9 @@ document.querySelector(".read_more").addEventListener("click", () => {
   }
 });
 
-///// SCROLL ANIMATION /////
+//// RH ENDS ////
+
+///// SCROLL-X ANIMATION /////
 
 const sliderBtns = document.querySelectorAll(".slider_btn");
 const [left, right] = sliderBtns;
@@ -114,9 +127,11 @@ const addAnimation = function () {
 };
 
 addAnimation();
-////// END OF SCROLL ANIMATION /////
 
-//// SCROLL CONTROLS ////
+////// END OF SCROLL-X ANIMATION /////
+
+//// SCROLL-X ANIMATION CONTROLS ////
+
 const nextPrev = (btn, dir) => {
   btn.addEventListener("click", () => {
     scrollers.forEach((scroller) => {
@@ -144,7 +159,7 @@ const pause = (btn) => {
 };
 pause(playBtn);
 
-//// END OF SCROLL CONTROLS ////
+//// END OF SCROLL-X CONTROLS ////
 
 //// DARKMODE FUNCTIONALITY ////
 
@@ -152,47 +167,55 @@ const container = document.querySelector(".container");
 const modeToggleBtn = document.querySelectorAll(".toggle_icon");
 const icons = document.querySelectorAll(".toggle_icon i");
 
-const isInDarkMode = (isDark) => {
-  if (isDark) {
+
+// FUCNCTION TO ACTIVATE DARKMODE
+
+const activateDarkMode = (boo) => {
+  if (boo) {
     container.id = `dark-container`;
   } else {
     container.id = `light-mode`;
   }
+
+  icons.forEach((icon) => {
+    boo
+      ? icon.classList.add("bx-sun") // SWAPPING ICONS BASED ON THE CURRENT THEME
+      : icon.classList.replace("bx-sun", "bx-moon");
+  });
+
+  // STORING THE CURRENT THEME
+
+  const darkModeActivated = container.id === `dark-container`;
+  localStorage.setItem("theme", darkModeActivated ? "dark" : "light");
+  console.log("darkmode toggled: ", darkModeActivated ? "on" : "off");
 };
 
 const darkMode = () => {
+
+  // CHECKING CURRENT DEVICE THEME
+
   let isDark =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  isInDarkMode(isDark);
-
-  const activateDarkMode = () => {
-    icons.forEach((icon) => {
-      isDark
-        ? icon.classList.add("bx-sun")
-        : icon.classList.replace("bx-sun", "bx-moon");
-    });
-
-    const darkModeActivated = container.id === `dark-container`;
-    localStorage.setItem("theme", darkModeActivated ? "dark" : "light");
-    console.log("darkmode toggled: ", darkModeActivated ? "on" : "off");
-  };
+  // WATCHING THE DEVICE'S THEME FOR CHANGE
 
   const currentTheme = window.matchMedia("(prefers-color-scheme: dark)");
   currentTheme.addEventListener("change", () => {
     isDark = isDark ? false : true;
-    isInDarkMode(isDark);
-    activateDarkMode();
+    activateDarkMode(isDark);
   });
+
+  // TOGGLE BETWEEN MODES WITH BUTTON
 
   modeToggleBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
       isDark = isDark ? false : true;
-      isInDarkMode(isDark);
-      activateDarkMode();
+      activateDarkMode(isDark);
     });
   });
+
+  // LOADING SAVED THEME ON PAGELOAD
 
   document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme");
@@ -205,8 +228,9 @@ const darkMode = () => {
         container.id = `dark-container`;
         isDark = true;
         break;
-    } 
+    }
 
+    // SWAPPING ICONS
     icons.forEach((icon) => {
       isDark
         ? icon.classList.add("bx-sun")
@@ -215,11 +239,11 @@ const darkMode = () => {
   });
 };
 
-darkMode();
+darkMode(); // INITIALIZING DARKMODE FUNCTIONALITY
 
-///// DM FUNCTIONALITY ENDS ////
+///// DARKMODE FUNCTIONALITY IMPLEMENTATION ENDS ////
 
-///// ANIMATIONS ////
+///// PAGE AND SCROLL-Y ANIMATIONS ////
 
 const canAnimate = function () {
   myReveal({
@@ -261,7 +285,9 @@ const canAnimate = function () {
   });
 };
 
-//// ANIMATIONS ENDS ////
+//// PAGE AND SCROLL-Y ANIMATIONS ENDS ////
+
+//// INITIALIZING SCROLL-Y ANIMATIONS ////
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   canAnimate();
