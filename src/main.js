@@ -288,3 +288,13 @@ const canAnimate = function () {
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   canAnimate();
 }
+
+const getResume = () => {
+  const body = document.body;
+  let aTag = document.createElement("a");
+  aTag.href = `./assets/resume.pdf`;
+  aTag.download = "resume";
+  body.appendChild(aTag);
+  aTag.click();
+  aTag.remove();
+};
