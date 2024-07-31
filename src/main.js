@@ -1,5 +1,5 @@
 "use strict";
-
+//////////////////////////////////////////////////
 //// NAVBAR TOGGLE ////
 const toggleMenu = () => {
   const menu = document.querySelector(".menu-links");
@@ -9,7 +9,7 @@ const toggleMenu = () => {
 };
 
 //// NAVBAR TOGGLE ENDS ////
-
+//////////////////////////////////////////////////
 //// TEXT ANIMATION ////
 
 let TxtRotate = function (el, toRotate, period) {
@@ -55,7 +55,7 @@ TxtRotate.prototype.tick = function () {
   }, delta);
 };
 
-window.onload = function () {
+window.addEventListener("load", () => {
   let elements = document.getElementsByClassName("txt-rotate");
   for (let i = 0; i < elements.length; i++) {
     let toRotate = elements[i].getAttribute("data-rotate");
@@ -64,10 +64,10 @@ window.onload = function () {
       new TxtRotate(elements[i], JSON.parse(toRotate), period);
     }
   }
-};
+});
 
 //// TEXT ANIMATION ENDS ////
-
+//////////////////////////////////////////////////
 //// SECTION SCROLL-NAV ANIMATION ////
 
 const sections = document.querySelectorAll("section");
@@ -93,7 +93,7 @@ window.onscroll = () => {
 };
 
 //// SECTION SCROLL-NAV ANIMATION ENDS ////
-
+//////////////////////////////////////////////////
 //// REVEALING HIDDEN TEXT ////
 
 document.querySelector(".read_more").addEventListener("click", () => {
@@ -104,7 +104,7 @@ document.querySelector(".read_more").addEventListener("click", () => {
 });
 
 //// RH ENDS ////
-
+//////////////////////////////////////////////////
 ///// SCROLL-X ANIMATION /////
 
 const sliderBtns = document.querySelectorAll(".slider_btn");
@@ -129,7 +129,7 @@ const addAnimation = function () {
 addAnimation();
 
 ////// END OF SCROLL-X ANIMATION /////
-
+//////////////////////////////////////////////////
 //// SCROLL-X ANIMATION CONTROLS ////
 
 const nextPrev = (btn, dir) => {
@@ -160,7 +160,7 @@ const pause = (btn) => {
 pause(playBtn);
 
 //// END OF SCROLL-X CONTROLS ////
-
+//////////////////////////////////////////////////
 //// DARKMODE FUNCTIONALITY ////
 
 const container = document.querySelector(".container");
@@ -168,13 +168,16 @@ const modeToggleBtn = document.querySelectorAll(".toggle_icon");
 const icons = document.querySelectorAll(".toggle_icon i");
 const currentTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-// FUCNCTION TO ACTIVATE DARKMODE
-
+// F() TO ACTIVATE DARKMODE
 const activateDarkMode = (boo) => {
   if (boo) {
     container.id = `dark-container`;
   } else {
     container.id = `light-mode`;
+    document.querySelector(".preloader").style.background =
+      "var(--primary-color)";
+    document.querySelector(".preloader__text").style.color =
+      "var(--darkmode-bg)";
   }
 
   icons.forEach((icon) => {
@@ -184,7 +187,6 @@ const activateDarkMode = (boo) => {
   });
 
   // STORING THE CURRENT THEME
-
   const darkModeActivated = container.id === `dark-container`;
   localStorage.setItem("theme", darkModeActivated ? "dark" : "light");
   console.log("darkmode toggled: ", darkModeActivated ? "on" : "off");
@@ -192,18 +194,15 @@ const activateDarkMode = (boo) => {
 
 const darkMode = () => {
   // ASSIGNING CURRENT PAGE THEME
-
   let isDark = false;
 
   // WATCHING THE DEVICE'S THEME FOR CHANGE
-
   currentTheme.addEventListener("change", () => {
     isDark = isDark ? false : true;
     activateDarkMode(isDark);
   });
 
   // TOGGLE BETWEEN MODES WITH BUTTON
-
   modeToggleBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
       isDark = isDark ? false : true;
@@ -212,7 +211,6 @@ const darkMode = () => {
   });
 
   // LOADING SAVED THEME ON PAGELOAD
-
   document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme");
     switch (savedTheme) {
@@ -236,9 +234,114 @@ const darkMode = () => {
 };
 
 darkMode();
-
 ///// DARKMODE FUNCTIONALITY IMPLEMENTATION ENDS ////
+//////////////////////////////////////////////////
+//// DOWNLOAD RESUME FUNCTIONALITY ////
 
+const getResume = () => {
+  const body = document.body;
+  let aTag = document.createElement("a");
+  aTag.href = `./assets/resume.pdf`;
+  aTag.download = "Justin's Resume";
+  body.appendChild(aTag);
+  aTag.click();
+  aTag.remove();
+};
+
+//// DOWNLOAD RESUME FUNCTIONALITY ENDS ////
+//////////////////////////////////////////////////
+//// PRELOADER FUNCTIONALITY BEGINS ////
+
+const preloaderEl = document.querySelector(".preloader");
+const preloaderText = document.querySelector(".preloader__text");
+const preloader = () => {
+  const blocks = document.querySelectorAll(".blocks .block");
+  let interval = 0;
+  blocks.forEach((block, i) => {
+    setTimeout(() => {
+      animatePreloader(block, i);
+    }, interval);
+    interval += 500;
+  });
+
+  const animatePreloader = function (block, index) {
+    let position = index;
+    setInterval(() => {
+      switch (position) {
+        case 0:
+          block.style.top = " 40px";
+          position = 3;
+          break;
+        case 1:
+          block.style.left = "40px";
+          position = 0;
+          break;
+        case 2:
+          block.style.top = "0px";
+          position = 1;
+          break;
+        case 3:
+          block.style.left = "0px";
+          position = 2;
+          break;
+      }
+    }, 1500);
+  };
+
+  let dots = 1;
+  setInterval(() => {
+    switch (dots) {
+      case 1:
+        preloaderText.textContent = "...Loading";
+        dots++;
+        break;
+      case 2:
+        preloaderText.textContent = "..Loading.";
+        dots++;
+        break;
+      case 3:
+        preloaderText.textContent = ".Loading..";
+        dots++;
+        break;
+      case 4:
+        preloaderText.textContent = "Loading...";
+        dots++;
+        break;
+      case 5:
+        preloaderText.textContent = ".Loading..";
+        dots++;
+        break;
+      case 6:
+        preloaderText.textContent = "..Loading.";
+        dots = 1;
+        break;
+    }
+  }, 500);
+};
+preloader();
+
+//// F() TO CLEAR PRELOADER
+const clearPreloader = () => {
+  preloaderEl.style.opacity = 0;
+  setTimeout(() => {
+    preloaderEl.style.display = "none";
+  }, 500);
+};
+
+///// CHANGING PRELOADER'S BG BASED ON THE CURRENT PAGE THEME /////
+window.addEventListener("load", () => {
+  const savedTheme = localStorage.getItem("theme");
+  switch (savedTheme) {
+    case "light":
+      preloaderEl.style.background = "var(--primary-color)";
+      preloaderText.style.color = "var(--darkmode-bg)";
+      break;
+  }
+  setTimeout(clearPreloader, 5000);
+});
+
+//// PRELOADER FUNCTIONALITY ENDS ////
+//////////////////////////////////////////////////
 ///// PAGE AND SCROLL-Y ANIMATIONS ////
 
 const canAnimate = function () {
@@ -282,19 +385,9 @@ const canAnimate = function () {
 };
 
 //// PAGE AND SCROLL-Y ANIMATIONS ENDS ////
-
+//////////////////////////////////////////////////
 //// INITIALIZING SCROLL-Y ANIMATIONS ////
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   canAnimate();
 }
-
-const getResume = () => {
-  const body = document.body;
-  let aTag = document.createElement("a");
-  aTag.href = `./assets/resume.pdf`;
-  aTag.download = "resume";
-  body.appendChild(aTag);
-  aTag.click();
-  aTag.remove();
-};
