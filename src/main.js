@@ -6,6 +6,13 @@ const toggleMenu = () => {
   const icon = document.querySelector(".mobile-icon");
   menu.classList.toggle("open");
   icon.classList.toggle("open");
+
+  document.body.addEventListener("click", (event) => {
+    if (!event.target.classList.contains("menu__u")) {
+      menu.classList.remove("open");
+      icon.classList.remove("open");
+    }
+  });
 };
 
 //// NAVBAR TOGGLE ENDS ////
@@ -337,7 +344,7 @@ window.addEventListener("load", () => {
       preloaderText.style.color = "var(--darkmode-bg)";
       break;
   }
-  setTimeout(clearPreloader, 5000);
+  setTimeout(clearPreloader, 50);
 });
 
 //// PRELOADER FUNCTIONALITY ENDS ////
@@ -347,7 +354,7 @@ window.addEventListener("load", () => {
 const canAnimate = function () {
   myReveal({
     origin: "top",
-    distance: "30px",
+    distance: "15px",
     duration: 1000,
     delay: 200,
     reset: true,

@@ -94,7 +94,7 @@
 
   .text_2,
   .text_1 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     padding: 0 5px;
   }
 
@@ -109,23 +109,24 @@
     justify-content: center;
   }
 
-  #experience .details-containers {
-    flex: unset;
-  }
-
   #experience .article-container {
     display: flex;
     text-align: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 4rem 5rem;
     justify-content: center;
   }
 
+  #experience .details-containers {
+    padding: 4rem 2.5rem;
+  }
+
   #experience article {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     width: 5rem;
     justify-content: center;
-    flex-direction: column;
+    align-items: center;
   }
 
   .slider[data-animated="true"] {
@@ -137,13 +138,7 @@
       white 95%,
       transparent
     );
-    mask: linear-gradient(
-      90deg,
-      transparent,
-      white 5%,
-      white 95%,
-      transparent
-    );
+    mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
   }
 
   #projects {
@@ -204,6 +199,7 @@
     height: auto;
     padding: 5px;
   }
+
   footer nav {
     height: 60vh;
     padding: 20px;
@@ -220,7 +216,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 0px;
   }
 
   .section_text .intro {
