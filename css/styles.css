@@ -984,6 +984,7 @@ footer .nav-links-conatainer {
 #dark-container .form-container {
   background: var(--darkmode-bg);
 }
+
 #dark-container .logo,
 #dark-container ul li a,
 #dark-container .section_text_p,
@@ -991,6 +992,10 @@ footer .nav-links-conatainer {
 #dark-container .experience-sub-title,
 #dark-container a {
   color: var(--darkmode-text-color);
+}
+
+#dark-container .onVisit {
+  color: var(--secon-color);
 }
 
 #dark-container .form-container input,
